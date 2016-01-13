@@ -29,9 +29,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.use('/api', expressJwt({
-    secret: config.secret
-}));
+app.use('/api', expressJwt({ secret: config.secret }));
 app.use('/api/nation', nationRoutes);
 app.use('/auth', authRoutes);
 
