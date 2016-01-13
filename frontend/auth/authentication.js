@@ -21,7 +21,7 @@ app.service('TokenService', [function () {
 
 
 app.service('UserService', ['$http', 'TokenService', function($http, TokenService) { 
-    var baseUrl = 'http://localhost:9000/auth';
+    var baseUrl = 'http://localhost:5000/auth';
     
     this.signup = function(user) {
         return $http.post(baseUrl + '/signup', user);    

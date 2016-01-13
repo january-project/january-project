@@ -14,14 +14,14 @@ var nationRoutes = require('./routes/nationRoutes');
 var port = process.env.PORT || 5000;
 mongoose.connect(config.database);
 
-app.use(function(req, res, next) {
-  if (req.headers.origin) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
-    if (req.method === 'OPTIONS') return res.send(200);
-  }
-  next();
+app.use(function (req, res, next) {
+    if (req.headers.origin) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
+        if (req.method === 'OPTIONS') return res.sendStatus(200);
+    }
+    next();
 });
 
 app.use(cors());
@@ -30,12 +30,12 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/api', expressJwt({
-  secret: config.secret
+    secret: config.secret
 }));
 app.use('/api/nation', nationRoutes);
 app.use('/auth', authRoutes);
 
 
-app.listen(port, function() {
-  console.log('Reached Port ' + port);
+app.listen(port, function () {
+    console.log('Reached Port ' + port);
 });
