@@ -1,7 +1,16 @@
-
 <div class="row">
-	<div class="col-xs-12">
-		<input ng-model='nation.name'>
+	<div ng-show='loggedIn' class="col-md-4 col-md-offset-4">
+		<form>
+			<div class="control-group">
+				<label>Nation</label>
+				<input type="text" class="form-control" ng-model="nation.name">
+			</div>
+			<br>
+
+			<button class="center-block btn btn-lg" ng-click="submit(nation)">Submit</button>
+		</form>
 	</div>
-	<button class="btn btn-lg" ng-click="submit(nation)">Submit</button>
+	<div ng-hide='loggedIn' class="col-md-4 col-md-offset-4">
+		<h3>Please log in or signup to add a nation</h3>
+	</div>
 </div>

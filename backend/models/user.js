@@ -32,6 +32,7 @@ userSchema.pre("save", function (next) {
     }
 
     bcrypt.hash(user.password, 10, function (err, hash) {
+		console.log('password hook: ' + user.password);
         if (err) return next(err);
 
         user.password = hash;
@@ -39,4 +40,21 @@ userSchema.pre("save", function (next) {
     });
 });
 
+//userSchema.pre('findOneAndUpdate', function(next) {
+//	console.log('its here');
+//	var user = this;
+//	console.log(user.toJSON());
+//    if (!user.isModified("password")) {
+//        next();
+//    }
+//
+//    bcrypt.hash(user.password, 10, function (err, hash) {
+//		console.log('password hook: ' + user.password);
+//        if (err) return next(err);
+//
+//        user.password = hash;
+//        next();
+//    });
+//});
+	
 module.exports = mongoose.model('User', userSchema);

@@ -20,25 +20,36 @@ app.service('TokenService', [function() {
 
 
 
-app.service('UserService', ['$http', 'TokenService', function($http, TokenService) {
-  var baseUrl = 'http://localhost:9000/auth';
+app.service('UserService', ['$http', 'TokenService', function($http, TokenService) { 
+    var baseUrl = 'http://localhost:5000/auth';
+	
+	this.currentUser = null;
+    
+    this.signup = function(user) {
+        return $http.post(baseUrl + '/signup', user);    
+    }
+    
+    this.login = function(user) {
+        return $http.post(baseUrl + '/login', user).then(function(response) {
+            TokenService.saveToken(response.data.token);
+            return response;
+        });
+		
+    }
+    
+    this.logout = function() {
+        TokenService.removeToken();
+		this.currentUser = null;
+    }
+	
+	this.changingUser = function(changeUser) {
+		changeUser._id = this.currentUser._id;
+		return $http.put('http://localhost:5000/api/user/' + changeUser._id, changeUser).then(function(response) {
+			return response;
+		});
+	}
 
-  this.signup = function(user) {
-    return $http.post(baseUrl + '/signup', user);
-  }
-
-  this.login = function(user) {
-    return $http.post(baseUrl + '/login', user).then(function(response) {
-      TokenService.saveToken(response.data.token);
-      return response;
-    });
-  }
-
-  this.logout = function() {
-    TokenService.removeToken();
-  }
-
-  this.isAuthenticated = function() {
+	this.isAuthenticated = function() {
     return !!TokenService.getToken();
   }
 }]);

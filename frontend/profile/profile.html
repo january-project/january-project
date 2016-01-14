@@ -1,13 +1,14 @@
 <div class="row">
 	<div class="col-xs-2 col-xs-offset-1">
+	<h1>Test user info output</h1>
 		<h2>Name: {{user.firstname}} {{user.lastname}}</h2>
 		<h2>username: {{user.username}}</h2>
 	</div>
 	<div class="col-xs-10">
 		<button class="btn btn-lg" ng-click="updateProfile()">Update Profile</button>
-		<div class="row" ng-hide='>
+		<div class="row" ng-hide='show'>
 			<div class="col-md-4 col-md-offset-4">
-				<h1>Create a new user</h1>
+				<h1>Update your Information</h1>
 
 				<form>
 					<div class="control-group">
@@ -23,11 +24,6 @@
 					<br>
 
 					<div class="control-group">
-						<label>Username</label>
-						<input type="text" class="form-control" ng-model="user.username">
-					</div>
-					<br>
-					<div class="control-group">
 						<label>Email</label>
 						<input type="text" class="form-control" ng-model="user.email">
 					</div>
@@ -35,7 +31,7 @@
 
 					<div class="control-group">
 						<label>Password</label>
-						<input type="password" class="form-control" ng-model="user.password">
+						<input type="password" class="form-control" ng-model="newPassword">
 					</div>
 					<br>
 
@@ -47,7 +43,7 @@
 					</div>
 
 					<br>
-					<button class="center-block btn btn-primary btn-lg" ng-click="signup(user)">Signup</button>
+					<button class="center-block btn btn-primary btn-lg" ng-click="change(user, newPassword)">Signup</button>
 				</form>
 			</div>
 		</div>
