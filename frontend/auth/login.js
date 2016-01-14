@@ -5,7 +5,8 @@ app.controller("LoginController", ['$location', '$scope', 'UserService', functio
     $scope.login = function(user) {
         //perform the login
         UserService.login(user).then(function(response) {
-            $location.path('/home');   
+            $location.path('/');
+			UserService.currentUser = response.data.user;
         }, function(response) {
             alert('There was a problem logging in');
         });

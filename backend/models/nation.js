@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var userSchema = require('./user').schema;
 
-var Nation = new Schema({
+var nationSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -10,10 +11,10 @@ var Nation = new Schema({
         type: Date,
         default: Date.now
     },
-    user: {
-        type: Schema.Types.ObjectId,
+    owner: {
+        type: Schema.Types.Mixed,
         ref: 'User'
     }
 });
 
-module.exports = mongoose.model('Nation', Nation);
+module.exports = mongoose.model('Nation', nationSchema);

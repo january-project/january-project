@@ -21,7 +21,7 @@ app.service('TokenService', [function() {
 
 
 app.service('UserService', ['$http', 'TokenService', function($http, TokenService) {
-  var baseUrl = 'http://dev.sandbox.com:5000/auth';
+  var baseUrl = 'http://localhost:9000/auth';
 
   this.signup = function(user) {
     return $http.post(baseUrl + '/signup', user);
@@ -43,26 +43,26 @@ app.service('UserService', ['$http', 'TokenService', function($http, TokenServic
   }
 }]);
 
-// httpInterceptor
-//In charge of adding token to the request and handling errors related to $http request
 
-app.factory('AuthInterceptor', ['$q', '$location', 'TokenService', function($q, $location, TokenService) {
-  var interceptor = {
-    request: function(config) {
-      var token = TokenService.getToken();
-      if (token) {
-        config.headers = config.headers || {};
-        config.headers.Authorization = 'Bearer ' + token;
-      }
 
-      return config;
-    },
-    responseError: function(response) {
-      if (response.status === 401) {
-        TokenService.removeToken();
-        $location.path('/login');
-      }
-      $q.reject(response);
+app.factory('AuthInterceptor', ['$q', '$location' ,'TokenService', function($q, $location, TokenService) {
+    var interceptor = {
+        request: function(config) {
+            var token = TokenService.getToken();
+            if (token) {
+                config.headers = config.headers || {};
+                config.headers.Authorization = 'Bearer ' + token;
+            }
+            
+            return config;
+        },
+        responseError: function(response) {
+            if (response.status === 401) {
+                TokenService.removeToken();
+                $location.path('/login');
+            }
+            $q.reject(response);
+        }
     }
   }
   return interceptor;
