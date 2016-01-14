@@ -5,7 +5,6 @@ var Nation = require('../models/nation');
 
 nationRouter.route('/')
     .get(function (req, res) {
-        console.log(req.user);
         Nation.find({ user: req.user._id }, function (err, nations) {
             if (err) {
                 res.status(500).send(err);
@@ -15,11 +14,7 @@ nationRouter.route('/')
     })
     .post(function (req, res) {
         var nation = new Nation(req.body);
-        console.log("req.user:");
-        console.log(req.user);
         nation.user = req.user;
-        console.log("nation:");
-        console.log(nation);
         nation.save(function (err) {
             if (err) {
                 res.status(500).send(err);
