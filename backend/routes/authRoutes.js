@@ -6,7 +6,6 @@ var config = require('../config');
 var bcrypt = require("bcrypt");
 
 authRouter.post('/signup', function (req, res) {
-	console.log(req.body);
     var user = new User(req.body);
     user.save(function (err, newUser) {
         if (err) res.status(500).send(err);
