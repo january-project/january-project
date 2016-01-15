@@ -1,0 +1,34 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+<<<<<<< 126c833fea3d8c7788579b3b930af2fc5fc602a2
+
+var Nation = new Schema({
+=======
+var userSchema = require('./user').schema;
+
+var nationSchema = new Schema({
+>>>>>>> rebase onto dev branch
+    name: {
+        type: String,
+        required: true
+    },
+    creationDate: {
+        type: Date,
+        default: Date.now
+    },
+<<<<<<< 126c833fea3d8c7788579b3b930af2fc5fc602a2
+    user: {
+        type: Schema.Types.ObjectId,
+=======
+    owner: {
+        type: Schema.Types.Mixed,
+>>>>>>> rebase onto dev branch
+        ref: 'User'
+    }
+});
+
+<<<<<<< 126c833fea3d8c7788579b3b930af2fc5fc602a2
+module.exports = mongoose.model('Nation', Nation);
+=======
+module.exports = mongoose.model('Nation', nationSchema);
+>>>>>>> rebase onto dev branch

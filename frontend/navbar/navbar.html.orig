@@ -13,11 +13,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+<<<<<<< 126c833fea3d8c7788579b3b930af2fc5fc602a2
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="isAuthenticated">
           <a href="#/home">Home</a>
-			<a href='#/profile'>Profile</a>
-			<a href='#/nation'>Nation</a>
         </li>
 
         <li class="dropdown">
@@ -39,6 +38,22 @@
           </ul>
         </li>
         <!--
+=======
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#/">Home</a></li>
+				<li><a href='#/profile'>Profile</a></li>
+				<li><a href='#/nation'>Nation</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#/login">Login</a></li>
+						<li><a href="#/signup">Signup</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#/logout">Logout</a></li>
+					</ul>
+				</li>
+				<!--
+>>>>>>> rebase onto dev branch
                 <li><a href='#/signup'>{{signup}}</a></li>
                 <li><a href='#/logout'>{{logout}}</a></li>
 -->

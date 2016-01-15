@@ -33,7 +33,10 @@ app.use(bodyParser.json());
 app.use('/api', expressJwt({ secret: config.secret }));
 app.use('/api/nation', nationRoutes);
 app.use('/auth', authRoutes);
+<<<<<<< 5cbaa417e5d177a3ce22f6540ea193105b5ca424
+=======
 app.use('/api/user', userRoutes);
+>>>>>>> adding ability for user info update and a nation.html file
 
 
 app.listen(port, function () {

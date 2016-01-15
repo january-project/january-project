@@ -1,6 +1,11 @@
 var app = angular.module('NSApp');
 
-app.controller("LogoutController", ["$location", "UserService", function($location, UserService) {
-  UserService.logout();
-  $location.path('/login');
+app.controller("LogoutController", ['$location', '$scope', 'UserService', function($location, $scope, UserService) {
+	
+	$scope.logoff = function() {
+		UserService.logout();
+		
+		$location.path('/');
+		
+	}
 }]);

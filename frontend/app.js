@@ -1,4 +1,4 @@
-var app = angular.module('NSApp', ['ngRoute', 'NSAuth']);
+var app = angular.module("NSApp", ["ngRoute", "NSAuth", "NSNationService"]);
 
 app.config(function($routeProvider) {
   $routeProvider

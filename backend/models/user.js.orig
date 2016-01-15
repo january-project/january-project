@@ -40,6 +40,8 @@ userSchema.pre("save", function (next) {
     });
 });
 
+<<<<<<< 5cbaa417e5d177a3ce22f6540ea193105b5ca424
+=======
 //userSchema.pre('findOneAndUpdate', function(next) {
 //	console.log('its here');
 //	var user = this;
@@ -57,4 +59,5 @@ userSchema.pre("save", function (next) {
 //    });
 //});
 	
+>>>>>>> adding ability for user info update and a nation.html file
 module.exports = mongoose.model('User', userSchema);
