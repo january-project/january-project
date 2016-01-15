@@ -1,9 +1,9 @@
-var app = angular.module("NSApp", ["ngRoute", "NSAuth"]);
+var app = angular.module('NSApp', ['ngRoute', 'NSAuth']);
 
 app.config(function($routeProvider) {
   $routeProvider
     .when('/home', {
-      templateUrl: "home/home.html",
+      templateUrl: 'home/home.html',
     })
     .when('/signup', {
       templateUrl: 'auth/signup.html',
@@ -16,5 +16,8 @@ app.config(function($routeProvider) {
     .when('/logout', {
       template: '',
       controller: 'LogoutController'
+    })
+    .when('/', {
+      templateUrl: 'home/home.html'
     })
 });
