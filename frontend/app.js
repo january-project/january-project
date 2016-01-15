@@ -2,7 +2,7 @@ var app = angular.module("NSApp", ["ngRoute", "NSAuth", "NSNationService"]);
 
 app.config(function($routeProvider) {
   $routeProvider
-    .when('/home', {
+    .when('/', {
       templateUrl: 'home/home.html',
     })
     .when('/signup', {

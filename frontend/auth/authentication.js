@@ -75,8 +75,9 @@ app.factory('AuthInterceptor', ['$q', '$location' ,'TokenService', function($q, 
             $q.reject(response);
         }
     }
-  }
-  return interceptor;
+	return interceptor;
+  
+  
 }]);
 
 app.config(['$httpProvider', function($httpProvider) {
