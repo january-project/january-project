@@ -28,4 +28,5 @@ app.config(function($routeProvider) {
 	  templateUrl: 'nation/nation.html',
 	  controller: 'NationController'
   	})
+  
 });
