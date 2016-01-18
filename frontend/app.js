@@ -17,15 +17,7 @@ app.config(function($routeProvider) {
       template: '',
       controller: 'LogoutController'
     })
-    .when('/home', {
+    .when('/', {
       templateUrl: 'home/home.html'
     })
-  	.when('/profile', {
-	  templateUrl: 'profile/profile.html',
-	  controller: 'ProfileController'
-  	})
-  	.when('/nation', {
-	  templateUrl: 'nation/nation.html',
-	  controller: 'NationController'
-  	})
 });
