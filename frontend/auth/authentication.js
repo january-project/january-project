@@ -21,7 +21,7 @@ app.service('TokenService', [function() {
 
 
 app.service('UserService', ['$http', 'TokenService', function($http, TokenService) {
-    var baseUrl = 'http://localhost:5000/auth';
+    var baseUrl = 'http://dev.sandbox.com:5000/auth';
 
 	this.currentUser = null;
 
@@ -75,9 +75,7 @@ app.factory('AuthInterceptor', ['$q', '$location' ,'TokenService', function($q, 
             $q.reject(response);
         }
     }
-
-	return interceptor;
-
+  return interceptor;
 }]);
 
 app.config(['$httpProvider', function($httpProvider) {
