@@ -1,0 +1,16 @@
+<h3 class="text-center">Political Self Identify Quiz</h3>
+<div ng-hide="blnFinished">
+  <form>
+    <div class="form-group" ng-repeat="testInfo in arrTestData">
+      <label for="mySelect">{{ testInfo.question }}</label>
+      <select class="form-control" ng-options="option.name for option in testInfo.availableOptions track by option.id" ng-model="testInfo.selectedOption"></select>
+      <br/>
+      <tt>option =
+        {{ testInfo.selectedOption.optionWeight.authoritarian }}</tt><br/>
+    </div>
+    <button type="submit" ng-click="getValues()" class="btn btn-default text-center">Submit</button>
+  </form>
+</div>
+<div ng-show="blnFinished">
+  <h1>{{ arrResultData }}</h1>
+</div>
