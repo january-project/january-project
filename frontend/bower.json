@@ -16,6 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular-google-chart": "~0.1.0"
+    "angular-google-chart": "~0.1.0",
+    "angular-route": "~1.4.9",
+    "jquery": "~2.2.0",
+    "jQuery": "~2.2.0"
   }
 }
