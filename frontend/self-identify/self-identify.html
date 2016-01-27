@@ -1,8 +1,15 @@
-<h3 class="text-center">Political Self Identify Quiz</h3>
 <div ng-hide="blnFinished">
+  <h3 class="text-center">Political Self Identify Quiz</h3>
   <form>
+    <div class="form-group">
+      <label>{{ objIdeologyQuestion.question }}</label>
+      <select class="form-control" ng-options="option.name for option in objIdeologyQuestion.availableOptions track by option.id" ng-model="objIdeologyQuestion.selectedOption"></select>
+      <tt>option=
+        {{ objIdeologyQuestion.selectedOption }}</tt>
+    </div>
+    <br/>
     <div class="form-group" ng-repeat="testInfo in arrTestData">
-      <label for="mySelect">{{ testInfo.question }}</label>
+      <label>{{ testInfo.question }}</label>
       <select class="form-control" ng-options="option.name for option in testInfo.availableOptions track by option.id" ng-model="testInfo.selectedOption"></select>
       <br/>
       <tt>option =
@@ -11,6 +18,9 @@
     <button type="submit" ng-click="getValues()" class="btn btn-default text-center">Submit</button>
   </form>
 </div>
-<div ng-show="blnFinished">
-  <h1>{{ arrResultData }}</h1>
+<div class="text-center" ng-show="blnFinished">
+  <h3>Questionaire Results</h3>
+  <h4>Chosen Ideology:
+    {{ arrResultData.chosenIdeology }}</h4>
+  <div google-chart chart="chartObject" style=""></div>
 </div>
