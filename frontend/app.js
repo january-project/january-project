@@ -28,4 +28,8 @@ app.config(function($routeProvider) {
 	  templateUrl: 'nation/nation.html',
 	  controller: 'NationController'
   	})
+  	.when('/nation/:nationId', {
+	  templateUrl: 'nation/usernation.html',
+	  controller: 'NationController'
+  })
 });

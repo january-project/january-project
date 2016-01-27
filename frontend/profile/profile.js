@@ -12,13 +12,17 @@ app.controller("ProfileController", ['$location', '$scope', 'UserService', funct
 			$scope.user = UserService.currentUser;
 			console.log($scope.user);
 		}
-	}
+	};
 	$scope.onLoad();
 	console.log($scope.user.username);
 	
 	$scope.updateProfile = function() {
-		$scope.show = false;
-	}
+		if($scope.show === true) {
+			$scope.show = false;
+		} else {
+			$scope.show = true;
+		}
+	};
 	
 	$scope.change = function(changeUser, newPassword) {
 		$scope.show = true;
@@ -27,6 +31,6 @@ app.controller("ProfileController", ['$location', '$scope', 'UserService', funct
 			UserService.currentUser = response.data;
 			$scope.user = UserService.currentUser;
 		});
-	}
+	};
 	
 }]);
