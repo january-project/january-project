@@ -17,6 +17,7 @@ var userRoutes = require('./routes/userRoutes');
 var flagRoutes = require('./routes/flagRoutes');
 var flags = require('./preload/preloadFlags');
 var questions = require('./preload/preloadQuestions');
+var questionRoutes = require('./routes/questionRoutes');
 
 MongoClient.connect(config.database, function(err, db){
 	if(err){
@@ -69,6 +70,7 @@ app.use('/api/ideology', ideologyRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/flags', flagRoutes);
+app.use('/api/questions', questionRoutes);
 
 
 app.listen(port, function () {
