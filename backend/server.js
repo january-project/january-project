@@ -12,6 +12,7 @@ var MongoClient = mongodb.MongoClient;
 var config = require('./config');
 var authRoutes = require('./routes/authRoutes');
 var nationRoutes = require('./routes/nationRoutes');
+var ideologyRoutes = require('./routes/ideologyRoutes');
 var userRoutes = require('./routes/userRoutes');
 var flagRoutes = require('./routes/flagRoutes');
 var flags = require('./preload/preloadFlags');
@@ -64,6 +65,7 @@ app.use(bodyParser.json());
 
 app.use('/api', expressJwt({ secret: config.secret }));
 app.use('/api/nation', nationRoutes);
+app.use('/api/ideology', ideologyRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/flags', flagRoutes);
