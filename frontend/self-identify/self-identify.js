@@ -22,7 +22,10 @@ app.controller('SelfIdentifyController', ['$scope', 'SelfIdentifyService', funct
       }
     });
 
-  $scope.arrTestData = SelfIdentifyService.getTestData();
+  SelfIdentifyService.getTestData()
+    .then(function(response) {
+      $scope.arrTestData = response;
+    });
   $scope.objIdeologyQuestion = SelfIdentifyService.getSelfIdeologyData();
   $scope.getValues = function() {
     $scope.blnFinished = SelfIdentifyService.processValues();
@@ -95,48 +98,48 @@ app.service('SelfIdentifyService', ['$http', function($http) {
     selectedOption: {}
   };
 
-  var arrQuestions = [{
-    question: 'What is your stance on abortion?',
-    availableOptions: [{
-      id: '1',
-      name: 'All abortion should be illegal',
-      optionWeight: {
-        authoritarian: 3,
-        controlledEconomy: 2,
-        progressive: 0,
-        nationalism: 2
-      }
-    }, {
-      id: '2',
-      name: "Abortion should be allowed but only when the mother's life is in danger",
-      optionWeight: {
-        authoritarian: 2,
-        controlledEconomy: 2,
-        progressive: 1,
-        nationalism: 2
-      }
-    }, {
-      id: '3',
-      name: 'Abortion should be allowed for anyone still in their first trimester',
-      optionWeight: {
-        authoritarian: 1,
-        controlledEconomy: 2,
-        progressive: 3,
-        nationalism: 2
-      }
-    }, {
-      id: '4',
-      name: 'Abortion should be allowed for anyone',
-      optionWeight: {
-        authoritarian: 0,
-        controlledEconomy: 2,
-        progressive: 4,
-        nationalism: 2
-      }
-    }],
-    selectedOption: {}
-    //This sets the default value of the select in the ui
-  }];
+  // var arrQuestions = [{
+  //   question: 'What is your stance on abortion?',
+  //   availableOptions: [{
+  //     id: '1',
+  //     name: 'All abortion should be illegal',
+  //     optionWeight: {
+  //       authoritarian: 3,
+  //       controlledEconomy: 2,
+  //       progressive: 0,
+  //       nationalism: 2
+  //     }
+  //   }, {
+  //     id: '2',
+  //     name: "Abortion should be allowed but only when the mother's life is in danger",
+  //     optionWeight: {
+  //       authoritarian: 2,
+  //       controlledEconomy: 2,
+  //       progressive: 1,
+  //       nationalism: 2
+  //     }
+  //   }, {
+  //     id: '3',
+  //     name: 'Abortion should be allowed for anyone still in their first trimester',
+  //     optionWeight: {
+  //       authoritarian: 1,
+  //       controlledEconomy: 2,
+  //       progressive: 3,
+  //       nationalism: 2
+  //     }
+  //   }, {
+  //     id: '4',
+  //     name: 'Abortion should be allowed for anyone',
+  //     optionWeight: {
+  //       authoritarian: 0,
+  //       controlledEconomy: 2,
+  //       progressive: 4,
+  //       nationalism: 2
+  //     }
+  //   }],
+  //   selectedOption: {}
+  //   //This sets the default value of the select in the ui
+  // }];
 
   this.checkData = function() {
     return $http.get(strBaseUrl + '/ideology')
@@ -147,7 +150,11 @@ app.service('SelfIdentifyService', ['$http', function($http) {
   };
 
   this.getTestData = function() {
-    return arrQuestions;
+    return $http.get(strBaseUrl + '/questions')
+      .then(function(response) {
+        //console.log(response.data);
+        return response.data;
+      });
   };
 
   this.getSelfIdeologyData = function() {
@@ -163,7 +170,8 @@ app.service('SelfIdentifyService', ['$http', function($http) {
   };
 
   this.getTestValues = function() {
-    console.log(arrQuestions);
+    // console.log('Questions');
+    // console.log(arrQuestions);
     arrResponses.push(objIdeologyQuestion.selectedOption);
     for (var i = 0; i < arrQuestions.length; i++) {
       arrResponses.push(arrQuestions[i].selectedOption);
@@ -176,7 +184,10 @@ app.service('SelfIdentifyService', ['$http', function($http) {
     var dblAuthoritarian = dblAuthoritarian || 0;
     var dblProgressive = dblProgressive || 0;
     var dblNationalism = dblNationalism || 0;
+    // console.log("our response");
+    // console.log(arrResponses);
     for (var i = 1; i < arrResponses.length; i++) {
+      console.log(arrResponses);
       dblAuthoritarian += arrResponses[i].optionWeight.authoritarian;
       dblControlledEconomy += arrResponses[i].optionWeight.controlledEconomy;
       dblProgressive += arrResponses[i].optionWeight.progressive;
@@ -217,7 +228,7 @@ app.service('SelfIdentifyService', ['$http', function($http) {
         var intArrayLength = response.data.length;
         for (var i = 0; i < intArrayLength; i++) {
           dblAverageAuthoritarian += response.data[i].authoritarian;
-          dblAverageProgressive = response.data[i].progressive;
+          dblAverageProgressive += response.data[i].progressive;
           dblAverageNationalism += response.data[i].nationalism;
           dblAverageControlledEconomy += response.data[i].controlledEconomy;
         }
