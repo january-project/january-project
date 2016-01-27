@@ -10,6 +10,7 @@ var unless = require('express-unless');
 var config = require('./config');
 var authRoutes = require('./routes/authRoutes');
 var nationRoutes = require('./routes/nationRoutes');
+var ideologyRoutes = require('./routes/ideologyRoutes');
 var userRoutes = require('./routes/userRoutes');
 
 var port = process.env.PORT || 5000;
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 
 app.use('/api', expressJwt({ secret: config.secret }));
 app.use('/api/nation', nationRoutes);
+app.use('/api/ideology', ideologyRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/user', userRoutes);
 

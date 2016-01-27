@@ -1,4 +1,4 @@
-var app = angular.module("NSApp", ["ngRoute", "NSAuth", "NSNationService"]);
+var app = angular.module("NSApp", ["ngRoute", "NSAuth", "NSNationService", 'googlechart']);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -28,4 +28,9 @@ app.config(function($routeProvider) {
 	  templateUrl: 'nation/nation.html',
 	  controller: 'NationController'
   	})
+    .when('/self-identify', {
+    templateUrl: 'self-identify/self-identify.html',
+    controller: 'SelfIdentifyController'
+    })
+
 });
